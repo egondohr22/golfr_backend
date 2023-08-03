@@ -15,6 +15,27 @@ module Api
       render json: response.to_json
     end
 
+    def show
+      user = User.find_by(id: params[:id])
+
+      if !user
+        render json: {
+          error: "User not found"
+        }
+        return
+      end
+
+      response = {
+        golfer: {
+          name: user.name,
+          scores: user.scores
+        }
+      }
+
+      render json: response.to_json
+
+    end
+
     def create
       score = current_user.scores.build(score_params)
 
