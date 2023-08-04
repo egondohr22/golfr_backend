@@ -15,6 +15,24 @@ module Api
       render json: response.to_json
     end
 
+    def show
+      user = User.find_by(id: params[:id])
+
+      unless user
+        render json: {
+          error: 'User not found'
+        }
+        return
+      end
+
+      serialized_scores = user.scores.map(&:serialize)
+      response = {
+        scores: serialized_scores,
+      }
+
+      render json: response.to_json
+    end
+
     def create
       score = current_user.scores.build(score_params)
 
