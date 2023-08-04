@@ -7,5 +7,4 @@ Rails.application.routes.draw do
     resources :scores, only: %i[create destroy]
     get 'golfers/:id', to: 'scores#show'
   end
-
 end

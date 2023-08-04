@@ -18,9 +18,9 @@ module Api
     def show
       user = User.find_by(id: params[:id])
 
-      if !user
+      unless user
         render json: {
-          error: "User not found"
+          error: 'User not found'
         }
         return
       end
@@ -33,7 +33,6 @@ module Api
       }
 
       render json: response.to_json
-
     end
 
     def create
