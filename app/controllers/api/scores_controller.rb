@@ -25,11 +25,9 @@ module Api
         return
       end
 
+      serialized_scores = user.scores.map(&:serialize)
       response = {
-        golfer: {
-          name: user.name,
-          scores: user.scores
-        }
+        scores: serialized_scores,
       }
 
       render json: response.to_json
